@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useClientTranslation } from "@/hooks/global/use-client-translation";
 // import HistoryButton from "./history-button";
 import { useContext, useEffect, useState } from "react";
-import { apiKy, dialogueKy } from "@/api";
+import { apiKy } from "@/api";
 import { createScopedLogger } from "@/utils";
 import { delay } from "@/lib/utils";
 import { Progress } from "@/components/ui/progress";
@@ -56,7 +56,7 @@ const VideoGennerationPannel = (props: {
     jobId: string,
     updateProgress: (percentage: number) => void
   ) => {
-    const api = `hedra/projects/${jobId}`;
+    const api = `hedra/api/v1/projects/${jobId}`;
     let videoUrl: string | null = null;
     // try 100 times
     const maxTryies = 100;
@@ -64,18 +64,14 @@ const VideoGennerationPannel = (props: {
       let thisRoundProgress = 0;
       try {
         // const res = await apiKy.get(api).json<{
-        const res = await dialogueKy.get(api).json<{
+        const res = await apiKy.get(api).json<{
           progress: number;
           videoUrl: string;
-          "302videoUrl": string;
         }>();
 
         thisRoundProgress = res.progress * 100;
 
-        if (
-          typeof res["302videoUrl"] !== "undefined" &&
-          res["302videoUrl"] !== ""
-        ) {
+        if (res.videoUrl && res.videoUrl !== "") {
           videoUrl = res.videoUrl;
           break;
         }

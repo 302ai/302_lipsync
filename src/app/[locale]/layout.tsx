@@ -1,4 +1,4 @@
-import AppAuth from "@/components/global/app-auth";
+// import AppAuth from "@/components/global/app-auth";
 import AppChat from "@/components/global/app-chat";
 import AppClient from "@/components/global/app-client";
 import AppFooter from "@/components/global/app-footer";
@@ -112,7 +112,7 @@ export default async function RootLayout({
           </AppClient>
           <AppChat />
           <AppMessage />
-          <AppAuth />
+          {/* <AppAuth /> */}
         </AppTheme>
       </body>
     </html>

@@ -1,4 +1,4 @@
-import { dialogueKy, fileKy } from "@/api";
+import { fileKy, apiKy } from "@/api";
 import { createScopedLogger, Logger } from "@/utils";
 import { useState } from "react";
 import useAjaxPost from "./use-ajax-post";
@@ -11,7 +11,7 @@ function isAudioFile(filename: string) {
 }
 
 const useVideoUpload = () => {
-  const { doAjax } = useAjaxPost(dialogueKy, "video/extract_audio");
+  const { doAjax } = useAjaxPost(apiKy, "302/vt/video/extract_audio");
 
   const videoUpload = async (file: File) => {
     const form = new FormData();

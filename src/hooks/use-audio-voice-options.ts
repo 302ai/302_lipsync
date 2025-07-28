@@ -1,4 +1,4 @@
-import { dialogueKy } from "@/api";
+import { apiKy } from "@/api";
 import { createScopedLogger, Logger } from "@/utils";
 import { useState } from "react";
 import ISO6391 from "iso-639-1";
@@ -58,9 +58,9 @@ const getAzureLangOptions = (options: AudioVoiceSpeakerItem[]) => {
   return result;
 };
 
-const ajaxGet = async (uiLang: string, logger: Logger) => {
-  const url = `voice/model?lang=${uiLang}`;
-  const res = await dialogueKy
+const ajaxGet = async (_uiLang: string, logger: Logger) => {
+  const url = "302/podcast/voices";
+  const res = await apiKy
     .get(url)
     .json<Record<string, AudioVoiceSpeakerItem[]>>();
   const result: AudioVoiceOptionItem[] = [];

@@ -6,7 +6,7 @@ import MP3Player from "@/components/mp3-player";
 import HistoryButton from "./history-button";
 import { Button } from "@/components/ui/button";
 import { useClientTranslation } from "@/hooks/global/use-client-translation";
-import { dialogueKy } from "@/api";
+import { apiKy } from "@/api";
 import { env } from "@/env";
 import { useAppStore } from "@/stores";
 import { createScopedLogger } from "@/utils";
@@ -64,11 +64,11 @@ const GenerateTab = (props: { onClickNext: (newAudioUrl: string) => void }) => {
   const ajaxGenerateTaskId = async () => {
     if (!speakerValue) return;
     const { provider, speaker } = speakerValue;
-    const apiUrl = "dialogue/async/generate";
+    const apiUrl = "302/podcast/async/generate";
 
     let taskId: string | null = null;
     try {
-      const res = await dialogueKy
+      const res = await apiKy
         .post(apiUrl, {
           json: {
             speakers: [
@@ -103,13 +103,13 @@ const GenerateTab = (props: { onClickNext: (newAudioUrl: string) => void }) => {
   };
 
   const ajaxGetAudioUrl = async (taskId: string) => {
-    const api = `dialogue/async/status/${taskId}`;
+    const api = `302/podcast/async/status/${taskId}`;
     let audioUrl: string | null = null;
     // try 100 times
     const maxTryies = 100;
     for (let index = 0; index < maxTryies; index++) {
       try {
-        const res = await dialogueKy.get(api).json<{
+        const res = await apiKy.get(api).json<{
           result: { content: string; progress: number };
           status: string;
         }>();

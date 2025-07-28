@@ -14,6 +14,9 @@ import {
 } from "@/hooks/use-audio-voice-options";
 import { createScopedLogger } from "@/utils";
 import { useEffect, useState } from "react";
+import { useIsAuthed } from "@/hooks/global/use-is-authed";
+import { useAppStore } from "@/stores";
+import toast from "react-hot-toast";
 
 /**
  * Component Value Type
@@ -55,6 +58,9 @@ const AudioSelector = (props: {
   const [options, setOptions] = useState<AudioVoiceOptionItem[]>([]);
 
   const { ajaxGetVoiceModel } = useAudioVoiceOptions();
+
+  const isAuthed = useIsAuthed();
+  const _hasHydrated = useAppStore((state) => state._hasHydrated);
 
   const uiLang = "all";
 
@@ -133,7 +139,8 @@ const AudioSelector = (props: {
     };
 
   const init = async () => {
-    if (!uiLang) {
+    if (!uiLang || !isAuthed || !_hasHydrated) {
+      toast.error(t("auth:home.api-key-error"));
       return;
     }
     const result = await ajaxGetVoiceModel(uiLang);
@@ -153,7 +160,7 @@ const AudioSelector = (props: {
   useEffect(() => {
     init();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uiLang]);
+  }, [uiLang, isAuthed, _hasHydrated]);
 
   return (
     <>
