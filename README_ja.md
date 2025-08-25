@@ -2,13 +2,13 @@
 
 <p align="center">画像をアップロードすることで、提出された音声ファイルから口型を生成して動画を合成し、写真を口にして話すことを実現します。</p>
 
-<p align="center"><a href="https://302.ai/ja/tools/lipsync/" target="blank"><img src="https://file.302.ai/gpt/imgs/github/20250102/72a57c4263944b73bf521830878ae39a.png" /></a></p >
+<p align="center"><a href="https://302.ai/product/detail/47" target="blank"><img src="https://file.302.ai/gpt/imgs/github/20250102/72a57c4263944b73bf521830878ae39a.png" /></a></p >
 
 <p align="center"><a href="README_zh.md">中文</a> | <a href="README.md">English</a> | <a href="README_ja.md">日本語</a></p>
 
 ![](docs/302_Talking_Photo_jp.png)
 
-[302.AI](https://302.ai/ja/)の[AIトーキングフォト](https://302.ai/ja/tools/lipsync/)のオープンソースバージョン。
+[302.AI](https://302.ai/ja/)の[AIトーキングフォト](https://302.ai/product/detail/47)のオープンソースバージョン。
 302.AIに直接ログインして、コードやコンフィグレーション不要でオンラインバージョンを使用できます。
 または、このプロジェクトを自分のニーズに合わせて変更し、302.AIのAPIキーを使用して独自にデプロイすることができます。
 
